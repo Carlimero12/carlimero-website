@@ -1,0 +1,24 @@
+{
+  "name": "spaceinvaders-scoreboard",
+  "version": "1.0.0",
+  "description": "website point for spaceinvaders online scoreboard",
+  "main": "server/server.js",
+  "engines": {
+    "node": ">=14.0.0",
+    "openjdk": ">=10.0"
+  },
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js"
+  },
+  "author": "Carlimero12",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "multer": "^2.0.0",
+    "path": "^0.12.7",
+    "sqlite3": "^5.1.7"
+  }
+}
