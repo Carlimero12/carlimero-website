@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <title>Highscores – SpaceShooter</title>
+    <link rel="icon" href="/media/Icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/highscores.css" />
+    <script>
+        function kick() {
+            alert("this page is under mainentance and not allowed to open");
+            window.location.assign("/");
+        }
+        document.addEventListener(onload, kick());
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <div style="display: flex; align-items: center;">
+            <img src="/media/Icon.ico" alt="Logo">
+            <span>Highscores</span>
+        </div>
+        <div class="nav-links">
+            <a href="/index.html" class="nav-home-btn">
+                <i class="fas fa-home"></i> Home
+            </a>
+        </div>
+    </div>
+
+
+    <div class="highscores-container">
+        <h1>🏆 Highscores</h1>
+        <table class="score-table">
+            <thead>
+                <tr>
+                    <th>Platz</th>
+                    <th>Spieler</th>
+                    <th>Punkte</th>
+                </tr>
+            </thead>
+            <tbody id="score-body">
+                <!-- Platzhalter wird per JS befüllt -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="animated-bg">
+        <div class="shape one"></div>
+        <div class="shape two"></div>
+        <div class="shape three"></div>
+    </div>
+
+    <script src="scripts/highscores.js" defer></script>
+</body>
+</html>

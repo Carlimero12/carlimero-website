@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About - SpaceShooter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="/style/Highscores.css" />
+    <link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="/style/About.css" />
+    <link rel="icon" type="image/icon" href="/media/Icon.ico" />
+    <script src="/scripts/About.js" defer></script>
+</head>
+<body>
+    <div class="navbar">
+        <div style="display: flex; align-items: center;">
+            <img src="/media/Icon.ico" alt="Logo">
+            <span>About</span>
+        </div>
+        <div class="nav-links">
+            <a href="/index.html" class="nav-home-btn">
+                <i class="fas fa-home"></i> Home
+            </a>
+        </div>
+    </div>
+
+
+    <div class="animated-bg">
+        <div class="shape one"></div>
+        <div class="shape two"></div>
+        <div class="shape three"></div>
+    </div>
+
+    <div class="content" style="word-wrap: normal;">
+        <h1>SpaceShooter</h1>
+        <p>
+            Hi, ich würde euch gerne eine bisschen über mein Spiel erzählen!
+            So ich habe vor Ca.1 1/2 Jahren dieses Projekt gestartet.
+            Damals wollte Ich bloß ein einfaches kleines Retro-Game machen.
+            Dieses Spiel endete ein wenig größer und Ich arbeite seit Damals enthusiastisch.
+            Mein aktueller name ist dafür <strong>SpaceShooter</strong>.
+            Über neue ideen und verbesserungs Vorschläge freue ich mich immer
+            und ich hoffe das mein Spiel bald mehr leute erreichen wird.
+         </p>
+         <img src="/media/Game1.png" alt="Placeholder" sizes="128x128" style="left: auto;">
+         <small>Screenshot aus dem Spiel</small>
+         <p>
+            <strong>D</strong>as Spiel hat Verschiedene Aliens die du Zerstören musst.
+            eine kleine Liste Folgt welche sie erklärt:
+         </p>
+             <div class="highscores-container">
+        <h1>Alien Typen</h1>
+        <table class="score-table" style="margin-left: 10%;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Schaden</th>
+                    <th>Special</th>
+                    <th>Aussehen</th>
+                </tr>
+            </thead>
+            <tbody id="score-body">
+                <tr> 
+                    <td>Healer</td>
+                    <td>0</td>
+                    <td>Wenn abgeschossen heilt es dich</td>
+                    <td><img src="/media/heart.png" alt="Placeholder" style="width: 100%; height: 100%;" sizes="128x128"></td>
+                </tr>
+                <tr>
+                    <td>Grüner Alien</td>
+                    <td>1</td>
+                    <td>-</td>
+                    <td><img src="/media/Alien.png" alt="Placeholder" style="width: 100%; height: 100%;" sizes="128x128"></td>
+                </tr>
+                <tr>
+                    <td>Roter Alien</td>
+                    <td>5</td>
+                    <td>-</td>
+                    <td><img src="/media/AlienRed.png" alt="Placeholder" style="width: 100%; height: 100%;" sizes="128x128"></td>
+                </tr>
+                <tr>
+                    <td>Bombe</td>
+                    <td>?</td>
+                    <td>Wenn berührt stirbt man, wenn zerstört hp20+ auch über limit</td>
+                    <td><img src="/media/bomb.png" alt="Placeholder" style="width: 100%; height: 100%;" sizes="128x128"></td>
+                </tr>
+                <tr>
+                    <td>PowerUp Blau</td>
+                    <td>0</td>
+                    <td>Erhöht Geschwindigkeit</td>
+                    <td><img src="/media/Powerup_light.png" alt="Placeholder" style="width: 100%; height: 100%;" sizes="128x128"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer style="opacity: 0.3; position: fixed; bottom: 0; left: 0%; align-items: center; display: flex; color: inherit;">Powered by Carlimero12 Studios</footer>
+</body>
+</html>

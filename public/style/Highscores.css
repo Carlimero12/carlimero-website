@@ -1,0 +1,42 @@
+.highscores-container {
+    margin-top: 120px;
+    text-align: center;
+}
+
+.highscores-container h1 {
+    font-size: 36px;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+.score-table {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 600px;
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
+}
+
+.score-table th, .score-table td {
+    padding: 16px;
+    color: #fff;
+    font-size: 18px;
+    text-align: left;
+}
+
+.score-table th {
+    background-color: rgba(0, 132, 255, 0.7);
+    font-weight: bold;
+}
+
+.score-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.score-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
