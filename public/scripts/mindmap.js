@@ -81,8 +81,8 @@ class Mindmap {
       console.log(`Satellit #${index} wurde geklickt.`);
     
       if (index === 0) {
-        alert("this is not finished");
-        next();
+        /*alert("this is not finished");
+        next();*/
         window.location.assign("/Highscores.html");
       } else if (index === 1) {
         window.location.assign("/Download.html");
