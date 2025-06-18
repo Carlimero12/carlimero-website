@@ -83,11 +83,11 @@ class Mindmap {
       if (index === 0) {
         alert("this is not finished");
         next();
-        window.location.assign("/Highscore");
+        window.location.assign("/Highscores.html");
       } else if (index === 1) {
-        window.location.assign("/Download");
+        window.location.assign("/Download.html");
       } else if (index === 2) {
-        window.location.assign("/about");
+        window.location.assign("/about.html");
       }
 }
 
