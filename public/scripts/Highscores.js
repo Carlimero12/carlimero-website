@@ -1,17 +1,17 @@
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        const response = await fetch("/api/highscores-retrieve");
-        const result = await response.json();
+        const response = await fetch("/tmp/highscores.json");
+        if (!response.ok) throw new Error("Netzwerkfehler");
 
-        const highscores = result.data || [];
+        const highscores = await response.json();
 
         const tbody = document.getElementById("score-body");
         highscores.forEach((entry, index) => {
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${index + 1}.</td>
-                <td>${entry.username}</td>
-                <td>${entry.highscore}</td>
+                <td>${entry.name}</td>
+                <td>${entry.score}</td>
             `;
             tbody.appendChild(row);
         });
