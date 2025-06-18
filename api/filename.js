@@ -4,7 +4,7 @@ import { open } from 'sqlite';
 // Open (or create) the SQLite database
 async function openDb() {
   return open({
-    filename: './users.db',
+    filename: '/tmp/users.db',
     driver: sqlite3.Database,
   });
 }
