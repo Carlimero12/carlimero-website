@@ -1,21 +1,14 @@
-import fs from 'fs';
-import path from 'path';
+import mysql from 'mysql2/promise';
 
-const filePath = path.resolve('./userdb.json');
+const dbConfig = {
+  host: process.env.MYSQL_HOST,
+  port: process.env.MYSQL_PORT || 3306,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+};
 
-function readUserDB() {
-  if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, JSON.stringify([]));
-  }
-  const data = fs.readFileSync(filePath);
-  return JSON.parse(data);
-}
-
-function writeUserDB(data) {
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-}
-
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ status: 'error', message: 'Method not allowed' });
   }
@@ -23,29 +16,39 @@ export default function handler(req, res) {
   const { Username, Password } = req.body;
 
   if (!Username || !Password) {
-    return res.status(400).json({ status: 'error', message: 'Missing credentials' });
+    return res.status(400).json({ status: 'error', message: 'Missing Username or Password' });
   }
 
+  let conn;
+
   try {
-    let users = readUserDB();
+    conn = await mysql.createConnection(dbConfig);
 
-    const userExists = users.find(u => u.Username === Username);
+    const [existing] = await conn.execute(
+      'SELECT * FROM users WHERE username = ?',
+      [Username]
+    );
 
-    if (userExists) {
-      if (userExists.Password === Password) {
+    if (existing.length > 0) {
+      const user = existing[0];
+      if (user.password === Password) {
         return res.status(200).json({ status: 'allowed' });
       } else {
-        return res.status(403).json({ status: 'error', message: 'Invalid password' });
+        return res.status(403).json({ status: 'error', message: 'Wrong password' });
       }
     }
 
-    // Add new user
-    users.push({ Username, Password });
-    writeUserDB(users);
+    // User not found → create
+    await conn.execute(
+      'INSERT INTO users (username, password) VALUES (?, ?)',
+      [Username, Password]
+    );
 
-    return res.status(200).json({ status: 'allowed', message: 'User added and allowed' });
-
-  } catch (error) {
-    return res.status(500).json({ status: 'error', message: 'Server error' });
+    return res.status(200).json({ status: 'allowed', message: 'New user added' });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ status: 'error', message: 'Database error' });
+  } finally {
+    if (conn) await conn.end();
   }
 }
