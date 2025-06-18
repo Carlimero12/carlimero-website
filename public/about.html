@@ -10,6 +10,16 @@
     <link rel="stylesheet" href="/style/About.css" />
     <link rel="icon" type="image/icon" href="/media/Icon.ico" />
     <script src="/scripts/About.js" defer></script>
+    <style>
+        .hidden {
+            display: none;
+        }
+        .bild {
+            cursor: pointer;
+            display: block;
+            margin: 10px 0;
+        }
+  </style>
 </head>
 <body>
     <div class="navbar">
@@ -42,10 +52,14 @@
             Über neue ideen und verbesserungs Vorschläge freue ich mich immer
             und ich hoffe das mein Spiel bald mehr leute erreichen wird.
          </p>
-         <img src="/media/Game1.png" alt="Placeholder" sizes="128x128" style="left: auto;">
-         <img src="/media/Game2.png" alt="Placeholder" sizes="128x128" style="left: auto;">
-         <img src="/media/Game3.png" alt="Placeholder" sizes="128x128" style="left: auto;">
-         <small>Screenshots aus dem Spiel</small>
+        <img src="/media/Game1.png" alt="Placeholder" class="bild" id="toggleButton" width="128" height="128">
+
+        <div id="extraImages" class="hidden">
+        <img src="/media/Game2.png" alt="Placeholder" class="bild" width="128" height="128">
+        <img src="/media/Game3.png" alt="Placeholder" class="bild" width="128" height="128">
+        </div>
+        <small>Screenshots aus dem Spiel</small>
+
          <p>
             <strong>D</strong>as Spiel hat Verschiedene Aliens die du Zerstören musst.
             eine kleine Liste Folgt welche sie erklärt:
