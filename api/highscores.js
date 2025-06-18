@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-const HIGHSCORES_FILE = '/tmp/highscores.json'; // Use /tmp for serverless writable dir
+const HIGHSCORES_FILE = '../public/tmp/highscores.json'; // Use /tmp for serverless writable dir
 
 // Helper to load highscores from file or return empty object
 async function loadHighscores() {
