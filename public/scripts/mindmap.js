@@ -39,7 +39,7 @@ class Mindmap {
     }
 
     createSatellites() {
-      const labels = ['Scores', 'Install', 'About', ' ', ' ', ' '];
+      const labels = ['Scores', 'Install', 'Info', ' ', ' ', ' '];
 
       for (let i = 0; i < this.numberOfSatellites; i++) {
         const btn = this.createButton('satellite', labels[i] || `#${i + 1}`, i);
