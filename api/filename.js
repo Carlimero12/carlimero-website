@@ -1,12 +1,13 @@
-import mysql from 'mysql2/promise';
+import sqlite3 from 'sqlite3';
+import { open } from 'sqlite';
 
-const dbConfig = {
-  host: process.env.MYSQL_HOST,
-  port: process.env.MYSQL_PORT || 3306,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE,
-};
+// Open (or create) the SQLite database
+async function openDb() {
+  return open({
+    filename: './users.db',
+    driver: sqlite3.Database,
+  });
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -19,36 +20,36 @@ export default async function handler(req, res) {
     return res.status(400).json({ status: 'error', message: 'Missing Username or Password' });
   }
 
-  let conn;
-
   try {
-    conn = await mysql.createConnection(dbConfig);
+    const db = await openDb();
 
-    const [existing] = await conn.execute(
-      'SELECT * FROM users WHERE username = ?',
-      [Username]
-    );
+    // Create users table if it doesn't exist
+    await db.exec(`
+      CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT UNIQUE,
+        password TEXT
+      )
+    `);
 
-    if (existing.length > 0) {
-      const user = existing[0];
+    // Check if user exists
+    const user = await db.get('SELECT * FROM users WHERE username = ?', Username);
+
+    if (user) {
+      // User exists - check password
       if (user.password === Password) {
         return res.status(200).json({ status: 'allowed' });
       } else {
-        return res.status(403).json({ status: 'error', message: 'Wrong password' });
+        return res.status(403).json({ status: 'error', message: 'Incorrect password' });
       }
     }
 
-    // User not found → create
-    await conn.execute(
-      'INSERT INTO users (username, password) VALUES (?, ?)',
-      [Username, Password]
-    );
+    // User doesn't exist - create new user
+    await db.run('INSERT INTO users (username, password) VALUES (?, ?)', Username, Password);
 
-    return res.status(200).json({ status: 'allowed', message: 'New user added' });
+    return res.status(200).json({ status: 'allowed', message: 'User created and allowed' });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ status: 'error', message: 'Database error' });
-  } finally {
-    if (conn) await conn.end();
   }
 }
